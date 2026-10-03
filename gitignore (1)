@@ -1,0 +1,5 @@
+.gitignore
+test.py
+../__init__.py
+__init__.py
+school_project/school_project/__pycache__/
