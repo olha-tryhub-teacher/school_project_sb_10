@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список оголошень</title>
+</head>
+<body>
+    <h1>Оголошення</h1>
+    <ul>
+        {% for announcement in announcements %}
+            <li>
+                <!-- Посилання на детальну сторінку конкретного оголошення -->
+                <a href="{% url 'announcement_detail' announcement.pk %}">
+                    <h2>{{ announcement.title }}</h2>
+                </a>
+                <p>{{ announcement.content|truncatewords:20 }}</p>
+                <small>Автор: {{ announcement.author.username }} | Створено: {{ announcement.created_at }}</small>
+            </li>
+            <hr>
+        {% empty %}
+            <p>Поки що немає активних оголошень.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

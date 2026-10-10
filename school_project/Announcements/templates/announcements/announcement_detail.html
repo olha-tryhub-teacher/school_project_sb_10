@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ announcement.title }}</title>
+</head>
+<body>
+    <h1>{{ announcement.title }}</h1>
+    <p>{{ announcement.content }}</p>
+    <p><small>Автор: {{ announcement.author.username }}</small></p>
+    <p><small>Дата створення: {{ announcement.created_at }}</small></p>
+
+    <br>
+    <a href="{% url 'announcement_list' %}">← Назад до списку оголошень</a>
+</body>
+</html>
