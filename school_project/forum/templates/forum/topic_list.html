@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category.name }} - Темы</title>
+</head>
+<body>
+    <a href="{% url 'forum:category_list' %}">← Назад к категориям</a>
+    <h1>Темы в категории: {{ category.name }}</h1>
+    <ul>
+        {% for topic in topics %}
+            <li>
+                <a href="{% url 'forum:topic_detail' topic.id %}">
+                    <strong>{{ topic.title }}</strong>
+                </a>
+                <br>
+                <small>Автор: {{ topic.author.username }} | Дата: {{ topic.created_at }}</small>
+            </li>
+        {% empty %}
+            <li>В этой категории пока нет тем.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

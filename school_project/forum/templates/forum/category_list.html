@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форум - Список категорий</title>
+</head>
+<body>
+    <h1>Категории форума</h1>
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'forum:topic_list' category.id %}">
+                    <strong>{{ category.name }}</strong>
+                </a>
+                <p>{{ category.description }}</p>
+            </li>
+        {% empty %}
+            <li>Категорий пока нет.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

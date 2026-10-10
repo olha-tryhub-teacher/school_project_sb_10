@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ topic.title }}</title>
+</head>
+<body>
+    <a href="{% url 'forum:topic_list' topic.category.id %}">← Назад к списку тем</a>
+    <h1>Тема: {{ topic.title }}</h1>
+    <p><small>Автор темы: {{ topic.author.username }} | Создана: {{ topic.created_at }}</small></p>
+
+    <hr>
+    <h3>Сообщения:</h3>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.author.username }}</strong> <small>({{ post.created_at }})</small>
+                <p>{{ post.content }}</p>
+            </li>
+        {% empty %}
+            <li>В этой теме еще нет сообщений.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
