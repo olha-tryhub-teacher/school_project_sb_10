@@ -1,0 +1,12 @@
+# База данных SQLite (локальная)
+*.sqlite3
+db.sqlite3
+
+# Виртуальное окружение
+.venv/
+venv/
+ENV/
+
+# Папки кэша Python
+__pycache__/
+*.pyc
