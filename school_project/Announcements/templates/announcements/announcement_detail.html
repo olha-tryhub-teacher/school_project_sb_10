@@ -6,6 +6,14 @@
 </head>
 <body>
     <h1>{{ announcement.title }}</h1>
+
+    <!-- Виводимо фотографію, якщо вона завантажена -->
+    {% if announcement.image %}
+        <div style="margin: 20px 0;">
+            <img src="{{ announcement.image.url }}" alt="{{ announcement.title }}" style="max-width: 500px; height: auto; border-radius: 8px;">
+        </div>
+    {% endif %}
+
     <p>{{ announcement.content }}</p>
     <p><small>Автор: {{ announcement.author.username }}</small></p>
     <p><small>Дата створення: {{ announcement.created_at }}</small></p>
