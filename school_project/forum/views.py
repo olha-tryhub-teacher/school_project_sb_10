@@ -28,15 +28,9 @@ def topic_detail(request, topic_id):
         if request.user.is_authenticated:
             content = request.POST.get('content')
             if content:
-                ForumPost.objects.create(
-                    topic=topic,
-                    author=request.user,
-                    content=content
-                )
-                return redirect('forum:topic_detail', topic_id=topic.id)
+                ForumPost.objects.create(topic=topic,author=request.user,content=content)
+            return redirect('forum:topic_detail', topic_id=topic.id)
         else:
-
             return redirect('admin:login')
-
     return render(request, 'forum/topic_detail.html', {'topic': topic, 'posts': posts})
 
