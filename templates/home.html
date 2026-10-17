@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Головна — SchoolSpace{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="status-dot"></span> ШКІЛЬНА ПЛАТФОРМА</div>
+    <h1>Усе шкільне життя.<br><span>В одному просторі.</span></h1>
+    <p class="hero-description">Навчання, спілкування, новини та події — зручно зібрані в одному місці.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/calendar/">Переглянути календар <span aria-hidden="true">↗</span></a>
+      <a class="button button-secondary" href="/announcements/">Останні оголошення</a>
+    </div>
+    <div class="hero-note"><span class="note-icon">✦</span> Твій щоденний центр шкільного життя</div>
+  </div>
+  <div class="hero-visual" aria-label="Огляд шкільної платформи">
+    <div class="visual-glow"></div>
+    <div class="dashboard-preview">
+      <div class="preview-top"><span class="preview-logo">S</span><span>Мій простір</span><span class="preview-dots">•••</span></div>
+      <div class="preview-greeting">Привіт! <span>✦</span></div>
+      <div class="preview-subtitle">Що відбувається у школі</div>
+      <div class="preview-stat-row">
+        <div class="preview-stat"><span class="stat-icon purple">▤</span><b>Щоденник</b><small>Оцінки й предмети</small></div>
+        <div class="preview-stat"><span class="stat-icon green">◷</span><b>Календар</b><small>Плани та події</small></div>
+      </div>
+      <div class="preview-event">
+        <div class="event-date"><b>24</b><span>ЖОВ</span></div>
+        <div><b>Шкільна зустріч</b><small>Актова зала · 12:30</small></div>
+        <span class="event-arrow">↗</span>
+      </div>
+      <div class="preview-progress"><span></span></div>
+      <div class="preview-bottom"><span>Твій простір для розвитку</span><span>✧</span></div>
+    </div>
+    <div class="floating-badge badge-top"><span>✦</span> Навчайся. Спілкуйся.</div>
+    <div class="floating-badge badge-bottom"><span class="online-dot"></span> Усе важливе — поруч</div>
+  </div>
+</section>
+
+<section class="section-heading">
+  <div>
+    <div class="eyebrow">МОЖЛИВОСТІ ПЛАТФОРМИ</div>
+    <h2>Твій шкільний простір</h2>
+    <p>Обирай потрібний розділ і продовжуй з того місця, де зупинився.</p>
+  </div>
+</section>
+
+<section class="module-grid" aria-label="Розділи платформи">
+  <a class="module-card card-forum" href="/forum/">
+    <span class="module-icon">☷</span><span class="module-arrow">↗</span>
+    <h3>Форум</h3><p>Обговорюй ідеї, став запитання та спілкуйся зі спільнотою.</p><span class="module-link">Перейти до форуму <b>→</b></span>
+  </a>
+  <a class="module-card card-grades" href="/grades/">
+    <span class="module-icon">▥</span><span class="module-arrow">↗</span>
+    <h3>Електронний щоденник</h3><p>Переглядай оцінки, навчальні результати й предмети.</p><span class="module-link">Відкрити щоденник <b>→</b></span>
+  </a>
+  <a class="module-card card-polls" href="/polls/">
+    <span class="module-icon">◉</span><span class="module-arrow">↗</span>
+    <h3>Опитування</h3><p>Висловлюй думку та долучайся до спільних рішень.</p><span class="module-link">Переглянути опитування <b>→</b></span>
+  </a>
+  <a class="module-card card-announcements" href="/announcements/">
+    <span class="module-icon">◈</span><span class="module-arrow">↗</span>
+    <h3>Оголошення</h3><p>Не пропускай важливі повідомлення від школи.</p><span class="module-link">Читати оголошення <b>→</b></span>
+  </a>
+  <a class="module-card card-calendar" href="/calendar/">
+    <span class="module-icon">▦</span><span class="module-arrow">↗</span>
+    <h3>Календар</h3><p>Плануй навчання та стеж за датами й дедлайнами.</p><span class="module-link">Відкрити календар <b>→</b></span>
+  </a>
+  <a class="module-card card-events" href="/events/">
+    <span class="module-icon">✳</span><span class="module-arrow">↗</span>
+    <h3>Події</h3><p>Дізнавайся про заходи та реєструйся на цікаві події.</p><span class="module-link">Знайти події <b>→</b></span>
+  </a>
+  <a class="module-card card-users" href="/users/">
+    <span class="module-icon">♙</span><span class="module-arrow">↗</span>
+    <h3>Користувачі</h3><p>Керуй профілем і знаходь учасників шкільної спільноти.</p><span class="module-link">До профілів <b>→</b></span>
+  </a>
+</section>
+
+<section class="bottom-banner">
+  <div class="banner-symbol">✦</div>
+  <div><h2>Будь у курсі шкільного життя</h2><p>Перевір календар, нові оголошення та найближчі події.</p></div>
+  <a class="button button-primary" href="/calendar/">До календаря <span aria-hidden="true">↗</span></a>
+</section>
+{% endblock %}

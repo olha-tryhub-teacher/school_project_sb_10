@@ -4,6 +4,7 @@ from django.db import models
 class Event(models.Model):
     title = models.CharField(max_length=100,verbose_name="Заголовок")
     text = models.TextField(verbose_name="Текст посту")
+    created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     date_publication = models.DateField(auto_now_add=True, verbose_name="Дата публікації")
     date_settings_post = models.DateField()
