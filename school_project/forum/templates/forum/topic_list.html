@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ category.name }} - Темы</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back-link { display: inline-block; margin-bottom: 15px; color: #4f46e5; text-decoration: none; }
+        .topic-row { background: white; padding: 15px 20px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #e5e7eb; display: block; text-decoration: none; color: #333; }
+        .topic-row:hover { border-color: #4f46e5; background: #fafafa; }
+        .topic-title { font-size: 18px; font-weight: bold; color: #111; margin-bottom: 5px; }
+        .meta { font-size: 12px; color: #666; }
+    </style>
 </head>
 <body>
-    <a href="{% url 'forum:category_list' %}">← Назад к категориям</a>
-    <h1>Темы в категории: {{ category.name }}</h1>
-    <ul>
+    <div class="container">
+        <a href="{% url 'forum:category_list' %}" class="back-link">← Назад к разделам</a>
+        <h1>Категория: {{ category.name }}</h1>
+
         {% for topic in topics %}
-            <li>
-                <a href="{% url 'forum:topic_detail' topic.id %}">
-                    <strong>{{ topic.title }}</strong>
-                </a>
-                <br>
-                <small>Автор: {{ topic.author.username }} | Дата: {{ topic.created_at }}</small>
-            </li>
+            <a href="{% url 'forum:topic_detail' topic.id %}" class="topic-row">
+                <div class="topic-title">{{ topic.title }}</div>
+                <div class="meta">Автор: <b>{{ topic.author.username }}</b> | Дата: {{ topic.created_at|date:"d.m.Y H:i" }}</div>
+            </a>
         {% empty %}
-            <li>В этой категории пока нет тем.</li>
+            <div class="topic-row" style="color: #666; text-align: center;">В этом разделе ещё нет ни одной темы.</div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
+

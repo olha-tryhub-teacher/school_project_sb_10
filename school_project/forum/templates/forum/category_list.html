@@ -2,21 +2,46 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Форум - Список категорий</title>
+    <title>СтудФорум - Главная</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; mx-auto: auto; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .logo { font-size: 24px; font-weight: bold; color: #4f46e5; text-decoration: none; }
+        .card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; }
+        .card h2 { margin-top: 0; color: #111; }
+        .btn { display: inline-block; background: #4f46e5; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: bold; }
+        .btn:hover { background: #4338ca; }
+    </style>
 </head>
 <body>
-    <h1>Категории форума</h1>
-    <ul>
+    <div class="container">
+        <div class="header">
+            <a href="{% url 'forum:category_list' %}" class="logo">💡 СтудФорум</a>
+            <div>
+                {% if user.is_authenticated %}
+                    <span>Привет, <b>{{ user.username }}</b>!</span> | <a href="{% url 'admin:logout' %}">Выйти</a>
+                {% else %}
+                    <a href="{% url 'admin:login' %}" class="btn">Войти</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <h1>Разделы форума</h1>
+
         {% for category in categories %}
-            <li>
-                <a href="{% url 'forum:topic_list' category.id %}">
-                    <strong>{{ category.name }}</strong>
-                </a>
+            <div class="card">
+                <h2>{{ category.name }}</h2>
                 <p>{{ category.description }}</p>
-            </li>
+                <div style="text-align: right;">
+                    <a href="{% url 'forum:topic_list' category.id %}" class="btn">Перейти в раздел →</a>
+                </div>
+            </div>
         {% empty %}
-            <li>Категорий пока нет.</li>
+            <div class="card" style="text-center: center; color: #666;">Категорий пока нет. Добавьте их в админке.</div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
+
+
