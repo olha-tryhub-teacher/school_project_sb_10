@@ -1,24 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ announcement.title }}</title>
+    <link rel="stylesheet" href="{% static 'Announcements/css/style.css' %}">
 </head>
 <body>
-    <h1>{{ announcement.title }}</h1>
 
-    <!-- Виводимо фотографію, якщо вона завантажена -->
-    {% if announcement.image %}
-        <div style="margin: 20px 0;">
-            <img src="{{ announcement.image.url }}" alt="{{ announcement.title }}" style="max-width: 500px; height: auto; border-radius: 8px;">
+    <div class="announcement-detail-container">
+        <h1>{{ announcement.title }}</h1>
+
+        <!-- Зображення з'явиться ТУТ, коли користувач натисне «Детальніше» -->
+        {% if announcement.image %}
+            <div class="image-wrapper">
+                <img src="{{ announcement.image.url }}" alt="{{ announcement.title }}">
+            </div>
+        {% endif %}
+
+        <div class="content">
+            {{ announcement.content }}
         </div>
-    {% endif %}
 
-    <p>{{ announcement.content }}</p>
-    <p><small>Автор: {{ announcement.author.username }}</small></p>
-    <p><small>Дата створення: {{ announcement.created_at }}</small></p>
+        <div class="meta-info">
+            <p><strong>Автор:</strong> {{ announcement.author.username }}</p>
+            <p><strong>Дата створення:</strong> {{ announcement.created_at|date:"d.m.Y H:i" }}</p>
+        </div>
 
-    <br>
-    <a href="{% url 'announcement_list' %}">← Назад до списку оголошень</a>
+        <a href="{% url 'announcement_list' %}" class="back-link">← Назад до списку оголошень</a>
+    </div>
+
 </body>
 </html>

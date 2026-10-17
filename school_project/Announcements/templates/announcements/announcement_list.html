@@ -1,25 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список оголошень</title>
+    <link rel="stylesheet" href="{% static 'Announcements/css/style.css' %}">
 </head>
 <body>
-    <h1>Оголошення</h1>
-    <ul>
-        {% for announcement in announcements %}
-            <li>
-                <!-- Посилання на детальну сторінку конкретного оголошення -->
-                <a href="{% url 'announcement_detail' announcement.pk %}">
-                    <h2>{{ announcement.title }}</h2>
-                </a>
-                <p>{{ announcement.content|truncatewords:20 }}</p>
-                <small>Автор: {{ announcement.author.username }} | Створено: {{ announcement.created_at }}</small>
-            </li>
-            <hr>
-        {% empty %}
-            <p>Поки що немає активних оголошень.</p>
-        {% endfor %}
-    </ul>
+
+    <div class="container">
+        <h1>Оголошення</h1>
+
+        <div class="announcements-grid">
+            {% for announcement in announcements %}
+                <div class="announcement-card">
+                    <!-- ЗОБРАЖЕННЯ ВИДАЛЕНО З ЦЬОГО ШАБЛОНУ -->
+
+                    <div class="card-body">
+                        <h2>
+                            <a href="{% url 'announcement_detail' announcement.pk %}">{{ announcement.title }}</a>
+                        </h2>
+                        <p>{{ announcement.content|truncatewords:20 }}</p>
+
+                        <div class="card-footer">
+                            <span>Автор: <strong>{{ announcement.author.username }}</strong></span>
+                            <span>{{ announcement.created_at|date:"d.m.Y" }}</span>
+                        </div>
+
+                        <a href="{% url 'announcement_detail' announcement.pk %}" class="btn-details">Детальніше</a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="empty-message">
+                    <p>Поки що немає активних оголошень.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </body>
 </html>
