@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ poll.title }}</title>
+    <link rel="stylesheet" href="{% static 'polls/css/polls.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ poll.title }}</h1>
+        {% if poll.description %}
+            <p>{{ poll.description }}</p>
+        {% endif %}
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'poll_submit' poll.pk %}">
+            {% csrf_token %}
+
+            {% for question in poll.questions.all %}
+                <div class="question-block">
+                    <div class="question-title">{{ forloop.counter }}. {{ question.text }}</div>
+
+                    {% for choice in question.choices.all %}
+                        <label class="choice-label">
+                            <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" required>
+                            {{ choice.text }}
+                        </label>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn">Отправить ответы</button>
+        </form>
+
+        <a href="{% url 'poll_list' %}" class="back-link">&larr; Вернуться к списку опросов</a>
+    </div>
+</body>
+</html>

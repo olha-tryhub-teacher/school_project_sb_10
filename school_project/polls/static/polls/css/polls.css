@@ -1,0 +1,183 @@
+/* static/polls/css/polls.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+h1 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* Сообщения и алерты */
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Карточки опросов */
+.poll-card {
+    border: 1px solid #e1e8ed;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.2s;
+}
+
+.poll-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.poll-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #34495e;
+    text-decoration: none;
+}
+
+.poll-title:hover {
+    color: #3498db;
+}
+
+.poll-date {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-top: 5px;
+}
+
+.empty {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Блоки вопросов */
+.question-block {
+    background: #f8f9fa;
+    border: 1px solid #e1e8ed;
+    border-left: 4px solid #3498db;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 0 6px 6px 0;
+}
+
+.question-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.choice-label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Элементы результатов */
+.choice-row {
+    margin-bottom: 12px;
+}
+
+.choice-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.progress-bar-bg {
+    background-color: #e9ecef;
+    border-radius: 4px;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: #3498db;
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.total-answers {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Кнопки и ссылки */
+.btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background-color: #27ae60;
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #34495e;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #2c3e50;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #7f8c8d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты: {{ poll.title }}</title>
+    <link rel="stylesheet" href="{% static 'polls/css/polls.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Результаты опроса: {{ poll.title }}</h1>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% for item in questions_data %}
+            <div class="question-block">
+                <div class="question-title">{{ forloop.counter }}. {{ item.question.text }}</div>
+
+                {% for choice_data in item.choices %}
+                    <div class="choice-row">
+                        <div class="choice-info">
+                            <span>{{ choice_data.choice.text }}</span>
+                            <span><strong>{{ choice_data.percentage }}%</strong> (голосов: {{ choice_data.count }})</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: {{ choice_data.percentage }}%;"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="total-answers">Всего ответов на вопрос: {{ item.total_answers }}</div>
+            </div>
+        {% endfor %}
+
+        <a href="{% url 'poll_list' %}" class="btn-back">&larr; К списку опросов</a>
+    </div>
+</body>
+</html>
