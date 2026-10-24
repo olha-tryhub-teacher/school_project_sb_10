@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ announcement.title }}</title>
+    <link rel="stylesheet" href="{% static 'Announcements/css/style.css' %}">
+</head>
+<body>
+
+    <div class="announcement-detail-container">
+        <h1>{{ announcement.title }}</h1>
+
+        {% if announcement.image %}
+            <div class="image-wrapper">
+                <img src="{{ announcement.image.url }}" alt="{{ announcement.title }}">
+            </div>
+        {% endif %}
+
+        <div class="content">
+            {{ announcement.content }}
+        </div>
+
+        <div class="meta-info">
+            <p><strong>Автор:</strong> {{ announcement.author.username }}</p>
+            <p><strong>Дата створення:</strong> {{ announcement.created_at|date:"d.m.Y H:i" }}</p>
+        </div>
+
+        <!-- БЛОК РЕАКЦІЙ -->
+        <div class="reactions-section" id="reactions">
+            <h3>Реакції:</h3>
+            <div class="reaction-buttons">
+                <a href="{% url 'add_reaction' announcement.pk 'heart' %}"
+                   class="reaction-btn {% if user_reaction == 'heart' %}active{% endif %}"
+                   title="Сердечко">
+                    ❤️ <span class="count">{{ reaction_counts.heart|default:0 }}</span>
+                </a>
+
+                <a href="{% url 'add_reaction' announcement.pk 'thumbs_up' %}"
+                   class="reaction-btn {% if user_reaction == 'thumbs_up' %}active{% endif %}"
+                   title="Клас">
+                    👍 <span class="count">{{ reaction_counts.thumbs_up|default:0 }}</span>
+                </a>
+
+                <a href="{% url 'add_reaction' announcement.pk 'thumbs_down' %}"
+                   class="reaction-btn {% if user_reaction == 'thumbs_down' %}active{% endif %}"
+                   title="Дизлайк">
+                    👎 <span class="count">{{ reaction_counts.thumbs_down|default:0 }}</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- БЛОК КОМЕНТАРІВ -->
+        <div class="comments-section">
+            <h3>Коментарі</h3>
+
+            {% if user.is_authenticated %}
+                <form action="{% url 'add_comment' announcement.pk %}" method="POST" class="comment-form">
+                    {% csrf_token %}
+                    <textarea name="text" rows="3" placeholder="Напишіть свій коментар..." required></textarea>
+                    <button type="submit" class="btn-details">Надіслати коментар</button>
+                </form>
+            {% else %}
+                <p><a href="{% url 'login' %}?next={{ request.path }}">Увійдіть</a>, щоб залишати коментарі та реакції.</p>
+            {% endif %}
+
+            <div class="comments-list" style="margin-top: 15px;">
+                {% for comment in announcement.comments.all %}
+                    <div class="comment-item">
+                        <p><strong>{{ comment.user.username }}</strong> <small>{{ comment.created_at|date:"d.m.Y H:i" }}</small></p>
+                        <p>{{ comment.text }}</p>
+                    </div>
+                {% empty %}
+                    <p style="color: #777;">Поки що коментарів немає. Станьте першим!</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <br>
+        <a href="{% url 'announcement_list' %}" class="back-link">← Назад до списку оголошень</a>
+    </div>
+
+</body>
+</html>
