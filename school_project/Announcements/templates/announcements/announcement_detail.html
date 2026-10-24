@@ -28,12 +28,26 @@
         </div>
 
         <!-- БЛОК РЕАКЦІЙ -->
-        <div class="reactions-section">
+        <div class="reactions-section" id="reactions">
             <h3>Реакції:</h3>
             <div class="reaction-buttons">
-                <a href="{% url 'add_reaction' announcement.pk 'heart' %}" class="reaction-btn">❤️ Сердечко</a>
-                <a href="{% url 'add_reaction' announcement.pk 'thumbs_up' %}" class="reaction-btn">👍 Клас</a>
-                <a href="{% url 'add_reaction' announcement.pk 'thumbs_down' %}" class="reaction-btn">👎 Дизлайк</a>
+                <a href="{% url 'add_reaction' announcement.pk 'heart' %}"
+                   class="reaction-btn {% if user_reaction == 'heart' %}active{% endif %}"
+                   title="Сердечко">
+                    ❤️ <span class="count">{{ reaction_counts.heart|default:0 }}</span>
+                </a>
+
+                <a href="{% url 'add_reaction' announcement.pk 'thumbs_up' %}"
+                   class="reaction-btn {% if user_reaction == 'thumbs_up' %}active{% endif %}"
+                   title="Клас">
+                    👍 <span class="count">{{ reaction_counts.thumbs_up|default:0 }}</span>
+                </a>
+
+                <a href="{% url 'add_reaction' announcement.pk 'thumbs_down' %}"
+                   class="reaction-btn {% if user_reaction == 'thumbs_down' %}active{% endif %}"
+                   title="Дизлайк">
+                    👎 <span class="count">{{ reaction_counts.thumbs_down|default:0 }}</span>
+                </a>
             </div>
         </div>
 
@@ -48,7 +62,7 @@
                     <button type="submit" class="btn-details">Надіслати коментар</button>
                 </form>
             {% else %}
-                <p><a href="{% url 'login' %}">Увійдіть</a>, щоб залишати коментарі та реакції.</p>
+                <p><a href="{% url 'login' %}?next={{ request.path }}">Увійдіть</a>, щоб залишати коментарі та реакції.</p>
             {% endif %}
 
             <div class="comments-list" style="margin-top: 15px;">
