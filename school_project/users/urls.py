@@ -4,6 +4,6 @@ app_name="users"
 urlpatterns=[
     path("profile/", ProfileDetailView.as_view(),name="profile"),
     path("login/", CustomLoginView.as_view(),name="login"),
-    path("logout", CustomLogoutView.as_view(),name="logout"),
-    path("create", RegisterView.as_view(),name="create"),
+    path("logout/", CustomLogoutView.as_view(),name="logout"),
+    path("register/", RegisterView.as_view(),name="register"),
 ]
