@@ -1,0 +1,17 @@
+{% extends "grades/base.html" %}
+
+{% block title %}Вчителі{% endblock %}
+
+{% block content %}
+<h2>Список вчителів</h2>
+
+{% for teacher in teachers %}
+    <div class="item">
+        {{ teacher.last_name }} {{ teacher.first_name }}
+    </div>
+{% empty %}
+    <p>Вчителів поки немає.</p>
+{% endfor %}
+
+{% include "grades/pagination.html" %}
+{% endblock %}

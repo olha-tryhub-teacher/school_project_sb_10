@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Електронний щоденник{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            background: #f4f7fb;
+            color: #253247;
+        }
+        nav {
+            padding: 15px;
+            background: #dce8f7;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #174a82;
+            text-decoration: none;
+        }
+        .item {
+            background: white;
+            padding: 14px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        a { color: #174a82; }
+    </style>
+</head>
+<body>
+    <h1>Електронний щоденник</h1>
+
+    <nav>
+        <a href="{% url 'grades:grade_list' %}">Оцінки</a>
+        <a href="{% url 'grades:student_list' %}">Учні</a>
+        <a href="{% url 'grades:teacher_list' %}">Вчителі</a>
+        <a href="{% url 'grades:subject_list' %}">Предмети</a>
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

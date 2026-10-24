@@ -1,0 +1,17 @@
+{% if is_paginated %}
+    <div class="item">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">
+                ← Попередня
+            </a>
+        {% endif %}
+
+        Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">
+                Наступна →
+            </a>
+        {% endif %}
+    </div>
+{% endif %}

@@ -1,0 +1,20 @@
+{% extends "grades/base.html" %}
+
+{% block title %}Оцінки{% endblock %}
+
+{% block content %}
+<h2>Оцінки учнів</h2>
+
+{% for grade in grades %}
+    <div class="item">
+        <strong>{{ grade.student }}</strong> —
+        {{ grade.subject }}:
+        <strong>{{ grade.value }}</strong> балів
+        <p>Дата: {{ grade.date }}</p>
+    </div>
+{% empty %}
+    <p>Оцінок поки немає. Додайте їх через адміністративну панель.</p>
+{% endfor %}
+
+{% include "grades/pagination.html" %}
+{% endblock %}

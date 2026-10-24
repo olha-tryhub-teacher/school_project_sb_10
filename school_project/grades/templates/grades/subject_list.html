@@ -1,0 +1,18 @@
+{% extends "grades/base.html" %}
+
+{% block title %}Предмети{% endblock %}
+
+{% block content %}
+<h2>Навчальні предмети</h2>
+
+{% for subject in subjects %}
+    <div class="item">
+        <strong>{{ subject.name }}</strong>
+        <p>Вчитель: {{ subject.teacher }}</p>
+    </div>
+{% empty %}
+    <p>Предметів поки немає.</p>
+{% endfor %}
+
+{% include "grades/pagination.html" %}
+{% endblock %}

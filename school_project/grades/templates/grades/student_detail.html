@@ -1,0 +1,26 @@
+{% extends "grades/base.html" %}
+
+{% block title %}Інформація про учня{% endblock %}
+
+{% block content %}
+<h2>{{ student.last_name }} {{ student.first_name }}</h2>
+
+<div class="item">
+    <p>Ім'я: {{ student.first_name }}</p>
+    <p>Прізвище: {{ student.last_name }}</p>
+    <p>Клас: {{ student.class_name }}</p>
+</div>
+
+<h3>Оцінки учня</h3>
+
+{% for grade in student.grade_set.all %}
+    <div class="item">
+        {{ grade.subject }} — {{ grade.value }} балів
+        ({{ grade.date }})
+    </div>
+{% empty %}
+    <p>Оцінок поки немає.</p>
+{% endfor %}
+
+<a href="{% url 'grades:student_list' %}">← До списку учнів</a>
+{% endblock %}
